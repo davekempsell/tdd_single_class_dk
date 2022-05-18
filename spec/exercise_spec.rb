@@ -29,4 +29,11 @@ RSpec.describe DiaryEntry do
     result = entry.reading_chunk(1, 5)
     expect(result).to eq "Example. Another word to go"
   end
+
+  it "returns the next chunk, skipping what's been read" do
+    entry = DiaryEntry.new("Monday", "One two three four five six seven eight nine ten.")
+    first_result = entry.reading_chunk(1, 4)
+    second_result = entry.reading_chunk(1, 4)
+    expect(second_result).to eq "five six seven eight"
+  end
 end
